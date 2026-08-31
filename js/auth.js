@@ -35,24 +35,24 @@ if (formCadastro) {
     const message = document.getElementById("form-message");
 
     if (senha.length < 6) {
-      message.textContent = "A senha deve ter pelo menos 6 caracteres.";
+      message.textContent = t("msg_senha_curta");
       return;
     }
     if (senha !== confirmarSenha) {
-      message.textContent = "As senhas não coincidem.";
+      message.textContent = t("msg_senhas_diferentes");
       return;
     }
 
     const users = getUsers();
     if (users.some((u) => u.email === email)) {
-      message.textContent = "Já existe uma conta com este email.";
+      message.textContent = t("msg_email_existente");
       return;
     }
 
     users.push({ nome, email, senha });
     saveUsers(users);
     message.style.color = "green";
-    message.textContent = "Conta criada! Redirecionando para o login...";
+    message.textContent = t("msg_conta_criada");
     setTimeout(() => (window.location.href = "login.html"), 1200);
   });
 }
@@ -69,7 +69,7 @@ if (formLogin) {
     const users = getUsers();
     const user = users.find((u) => u.email === email && u.senha === senha);
     if (!user) {
-      message.textContent = "Email ou senha inválidos.";
+      message.textContent = t("msg_login_invalido");
       return;
     }
 
@@ -88,7 +88,7 @@ function updateNavAuthState() {
     if (navLogin) navLogin.hidden = true;
     if (navCadastro) navCadastro.hidden = true;
     navUser.hidden = false;
-    navUser.innerHTML = `Olá, ${session.nome.split(" ")[0]} · <a href="#" id="logout-link">Sair</a>`;
+    navUser.innerHTML = `${t("nav_hello")}, ${session.nome.split(" ")[0]} · <a href="#" id="logout-link">${t("nav_logout")}</a>`;
     const logoutLink = document.getElementById("logout-link");
     if (logoutLink) {
       logoutLink.addEventListener("click", (e) => {
@@ -99,3 +99,4 @@ function updateNavAuthState() {
   }
 }
 updateNavAuthState();
+document.addEventListener("buskmate:langchange", updateNavAuthState);
