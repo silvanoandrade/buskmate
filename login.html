@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | BuskMate</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img src="assets/logo-white.svg" alt="BuskMate" class="logo-img"></a>
+      <nav class="nav">
+        <a href="mapa.html">Mapa</a>
+        <a href="login.html">Login</a>
+        <a href="cadastro.html" class="btn-nav">Cadastrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <h1>Entrar</h1>
+      <p class="auth-subtitle">Acesse sua conta para avaliar e comentar spots.</p>
+      <form id="form-login" novalidate>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
+
+        <p class="form-message" id="form-message" role="alert"></p>
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+      <p class="auth-switch">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>BuskMate Beta &middot; MVP para localização e avaliação de spots de música de rua no Porto</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
