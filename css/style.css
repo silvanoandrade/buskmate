@@ -84,6 +84,61 @@ a { color: inherit; }
   font-weight: 500;
 }
 
+/* Language switcher */
+.lang-switcher {
+  position: relative;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--color-white);
+  color: var(--color-dark);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  min-width: 160px;
+  z-index: 50;
+}
+
+.lang-option {
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.lang-option:hover {
+  background: #f0f0ee;
+}
+
+.lang-option.active {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
 /* Hero */
 .hero {
   background: linear-gradient(135deg, var(--color-teal), var(--color-dark));
