@@ -1,5 +1,6 @@
 // Mapa interativo com Leaflet.js + OpenStreetMap
 const REVIEWS_KEY = "buskmate_reviews"; // { [spotId]: [{ autor, nota, comentario, data }] }
+let currentSpot = null;
 
 function getReviews(spotId) {
   const all = JSON.parse(localStorage.getItem(REVIEWS_KEY) || "{}");
@@ -37,15 +38,18 @@ const spotContent = document.getElementById("spot-content");
 const closePanelBtn = document.getElementById("close-panel");
 
 function abrirSpot(spot) {
+  currentSpot = spot;
   const reviews = getReviews(spot.id);
   const media = mediaAvaliacoes(reviews);
   const session = typeof getSession === "function" ? getSession() : null;
+  const descricao = translateSpot(spot.id, "descricao") || spot.descricao;
+  const melhorHorario = translateSpot(spot.id, "melhorHorario") || spot.melhorHorario;
 
   spotContent.innerHTML = `
     <h2>${spot.nome}</h2>
-    <p class="spot-rating">${media ? `${renderEstrelas(media)} ${media} (${reviews.length} avaliações)` : "Ainda sem avaliações"}</p>
-    <p>${spot.descricao}</p>
-    <p><strong>Melhor horário:</strong> ${spot.melhorHorario}</p>
+    <p class="spot-rating">${media ? `${renderEstrelas(media)} ${media} (${reviews.length} ${t("map_reviews_count")})` : t("map_no_reviews")}</p>
+    <p>${descricao}</p>
+    <p><strong>${t("map_best_time")}</strong> ${melhorHorario}</p>
 
     <hr>
 
@@ -53,23 +57,23 @@ function abrirSpot(spot) {
       ${
         session
           ? `
-        <h3>Avaliar este spot</h3>
+        <h3>${t("map_rate_title")}</h3>
         <form id="form-avaliar">
           <div class="star-input" id="star-input">
             ${[1, 2, 3, 4, 5].map((n) => `<span class="star" data-value="${n}">☆</span>`).join("")}
           </div>
           <input type="hidden" id="nota-selecionada" value="0">
-          <textarea id="comentario" placeholder="Escreva um comentário sobre este spot..." rows="3"></textarea>
-          <button type="submit" class="btn btn-primary btn-block">Enviar avaliação</button>
+          <textarea id="comentario" placeholder="${t("map_comment_placeholder")}" rows="3"></textarea>
+          <button type="submit" class="btn btn-primary btn-block">${t("map_send_review")}</button>
           <p class="form-message" id="avaliar-message"></p>
         </form>
       `
-          : `<p class="login-prompt">Faça <a href="login.html">login</a> para avaliar e comentar este spot.</p>`
+          : `<p class="login-prompt">${t("map_login_prompt_pre")} <a href="login.html">${t("map_login_prompt_link")}</a> ${t("map_login_prompt_post")}</p>`
       }
     </div>
 
     <div class="comentarios-lista">
-      <h3>Comentários</h3>
+      <h3>${t("map_comments_title")}</h3>
       ${
         reviews.length
           ? reviews
@@ -83,7 +87,7 @@ function abrirSpot(spot) {
             </div>`
               )
               .join("")
-          : "<p>Seja o primeiro a comentar.</p>"
+          : `<p>${t("map_no_comments")}</p>`
       }
     </div>
   `;
@@ -107,7 +111,7 @@ function abrirSpot(spot) {
       const nota = Number(notaInput.value);
       const msg = document.getElementById("avaliar-message");
       if (!nota) {
-        msg.textContent = "Selecione de 1 a 5 estrelas.";
+        msg.textContent = t("map_select_stars");
         return;
       }
       const comentario = document.getElementById("comentario").value.trim();
@@ -130,4 +134,8 @@ BUSKMATE_SPOTS.forEach((spot) => {
   const marker = L.marker([spot.lat, spot.lng]).addTo(map);
   marker.bindTooltip(spot.nome);
   marker.on("click", () => abrirSpot(spot));
+});
+
+document.addEventListener("buskmate:langchange", () => {
+  if (currentSpot) abrirSpot(currentSpot);
 });
