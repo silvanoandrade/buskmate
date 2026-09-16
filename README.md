@@ -1,5 +1,4 @@
 # BuskMate Beta
-
 🌐 [Português](#-português) | [English](#-english) | [Español](#-español)
 
 MVP for finding, rating and sharing street music (busking) spots — currently focused on Porto, Portugal.
@@ -33,7 +32,7 @@ https://silvanoandrade.github.io/buskmate/
 
 ### Testes / QA
 Este projeto tem uma suíte de QA completa por trás do MVP:
-- **Testes manuais:** 54 casos de teste planejados e executados contra o site publicado, documentados em [`Testes/BuskMate_QA_Plano_de_Testes.xlsx`](Testes/BuskMate_QA_Plano_de_Testes.xlsx) e [`Testes/execucao_resultados.md`](Testes/execucao_resultados.md).
+- **Testes manuais:** 54 casos de teste planejados e executados contra o site publicado, documentados em [`Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx`](Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx) e [`Documentação de QA/execucao_resultados.md`](Documentação de QA/execucao_resultados.md).
 - **Automação:** suíte em Python + Selenium + pytest, construída aula a aula, cobrindo os casos de maior prioridade — veja [`automacao/`](automacao/) e o [guia de aulas](automacao/README_AUTOMACAO.md).
 
 ### Como rodar localmente
@@ -72,7 +71,7 @@ https://silvanoandrade.github.io/buskmate/
 
 ### Testing / QA
 This project has a full QA suite behind the MVP:
-- **Manual tests:** 54 test cases planned and executed against the published site, documented in [`Testes/BuskMate_QA_Plano_de_Testes.xlsx`](Testes/BuskMate_QA_Plano_de_Testes.xlsx) and [`Testes/execucao_resultados.md`](Testes/execucao_resultados.md).
+- **Manual tests:** 54 test cases planned and executed against the published site, documented in [`Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx`](Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx) and [`Documentação de QA/execucao_resultados.md`](Documentação de QA/execucao_resultados.md).
 - **Automation:** a Python + Selenium + pytest suite, built lesson by lesson, covering the highest-priority cases — see [`automacao/`](automacao/) and the [lesson guide](automacao/README_AUTOMACAO.md).
 
 ### Running locally
@@ -111,7 +110,7 @@ https://silvanoandrade.github.io/buskmate/
 
 ### Pruebas / QA
 El proyecto tiene una suite de QA completa detrás del MVP:
-- **Pruebas manuales:** 54 casos de prueba planificados y ejecutados contra el sitio publicado, documentados en [`Testes/BuskMate_QA_Plano_de_Testes.xlsx`](Testes/BuskMate_QA_Plano_de_Testes.xlsx) y [`Testes/execucao_resultados.md`](Testes/execucao_resultados.md).
+- **Pruebas manuales:** 54 casos de prueba planificados y ejecutados contra el sitio publicado, documentados en [`Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx`](Documentação de QA/BuskMate_QA_Plano_de_Testes.xlsx) y [`Documentação de QA/execucao_resultados.md`](Documentação de QA/execucao_resultados.md).
 - **Automatización:** una suite en Python + Selenium + pytest, construida clase a clase, que cubre los casos de mayor prioridad — ver [`automacao/`](automacao/) y la [guía de clases](automacao/README_AUTOMACAO.md).
 
 ### Cómo ejecutar en local
