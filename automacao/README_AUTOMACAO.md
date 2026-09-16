@@ -31,7 +31,7 @@ Chrome certo na primeira execução — não precisa instalar nada manualmente.
   módulo, os casos marcados "Alta" no `BuskMate_QA_Plano_de_Testes.xlsx`.
   Progresso:
   - [x] Cadastro — TC-015 a TC-019 (`test_cadastro.py`) ✅ 5/5
-  - [ ] Login — TC-021, TC-022, TC-023 (3 casos)
+  - [x] Login — TC-021, TC-022, TC-023 (`test_login.py`) ✅ 3/3
   - [ ] Sessão — TC-025, TC-026 (2 casos)
   - [ ] Navegação — TC-001 (1 caso)
   - [ ] Internacionalização — TC-005, TC-006, TC-007, TC-008, TC-014 (5 casos)
