@@ -1,0 +1,27 @@
+name: Testes automatizados (Selenium)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configura o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instala as dependências
+        working-directory: automacao
+        run: python -m pip install -r requirements.txt
+
+      - name: Roda a suíte de testes Selenium
+        working-directory: automacao
+        run: python -m pytest tests/ -v
