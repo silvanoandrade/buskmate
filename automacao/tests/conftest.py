@@ -27,6 +27,14 @@ def driver():
     options = Options()
     options.add_argument("--headless=new")   # comente pra ver o Chrome abrindo
     options.add_argument("--window-size=1280,900")
+
+    # NOVO: pede pro Chrome guardar os logs do console (os mesmos que
+    # aparecem no DevTools, aba "Console") pra gente poder ler depois com
+    # driver.get_log("browser"). Sem isso, get_log sempre volta vazio.
+    # É o TC-050 (módulo Não-funcional) que usa isso pra checar que o
+    # site não solta nenhum erro de JavaScript.
+    options.set_capability("goog:loggingPrefs", {"browser": "ALL"})
+
     navegador = webdriver.Chrome(options=options)
 
     # --- ENTREGA: o teste recebe "navegador" aqui, roda o corpo dele ---
