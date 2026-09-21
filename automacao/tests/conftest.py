@@ -28,6 +28,13 @@ def driver():
     options.add_argument("--headless=new")   # comente pra ver o Chrome abrindo
     options.add_argument("--window-size=1280,900")
 
+    # NOVO (Aula 7 — CI): flags padrão pra rodar o Chrome numa máquina
+    # de CI (GitHub Actions) sem problemas de permissão/memória
+    # compartilhada. Não atrapalham em nada rodando local — por isso
+    # ficam sempre ligadas, aqui e lá.
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
     # NOVO: pede pro Chrome guardar os logs do console (os mesmos que
     # aparecem no DevTools, aba "Console") pra gente poder ler depois com
     # driver.get_log("browser"). Sem isso, get_log sempre volta vazio.
@@ -42,4 +49,3 @@ def driver():
 
     # --- TEARDOWN: roda DEPOIS do teste terminar, falhando ou não ---
     navegador.quit()
-
