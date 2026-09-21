@@ -8,6 +8,8 @@
 # =============================================================================
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from conftest import URL
 
 
@@ -17,6 +19,17 @@ class MapaPage:
 
     def abrir(self):
         self.driver.get(f"{URL}mapa.html")
+        # NOVO: espera explícita. O Leaflet desenha o mapa e os marcadores
+        # de forma assíncrona (via JavaScript), depois que a página já
+        # "carregou" do ponto de vista do Selenium — sem essa espera, um
+        # teste que rode rápido demais (como no CI, que costuma ser mais
+        # rápido que a máquina local) pode tentar clicar num marcador antes
+        # dele existir. WebDriverWait é melhor que time.sleep: ele não
+        # espera um tempo fixo, só até a condição virar verdadeira (ou até
+        # o timeout de 10s, se algo estiver realmente quebrado).
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".leaflet-marker-icon"))
+        )
         return self
 
     @property
