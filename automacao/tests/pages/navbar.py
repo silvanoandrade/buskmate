@@ -37,7 +37,14 @@ class Navbar:
     def trocar_idioma(self, lang):
         """Abre o menu de idiomas e clica na opção pedida ('pt', 'en' ou 'es')."""
         self.lang_toggle.click()
-        self.driver.find_element(By.CSS_SELECTOR, f"li.lang-option[data-lang='{lang}']").click()
+        opcao = self.driver.find_element(By.CSS_SELECTOR, f"li.lang-option[data-lang='{lang}']")
+        # NOVO: clique via JavaScript em vez de opcao.click() direto. Quando
+        # o painel do spot está aberto (TC-014), ele às vezes fica por cima
+        # do dropdown de idiomas — o Selenium então recusa o clique "de
+        # verdade" (ElementClickInterceptedException), mesmo a opção estando
+        # visível e clicável pra um usuário real. O clique via JS dispara o
+        # evento diretamente no elemento, sem checar o que está por cima.
+        self.driver.execute_script("arguments[0].click();", opcao)
 
     def opcoes_de_idioma(self):
         return self.driver.find_elements(By.CSS_SELECTOR, "li.lang-option")
@@ -57,4 +64,3 @@ class Navbar:
 
     def fazer_logout(self):
         self.driver.find_element(By.ID, "logout-link").click()
-
